@@ -31,6 +31,9 @@ export class Server implements IServer {
 
     this.app = express();
 
+    // this is here so that it doesn't spam logs
+    this.app.use('/healthy', (_, res) => res.sendStatus(200));
+
     if (args && args.useDefaultMiddleware) {
       middlewareArray.push(cors());
       middlewareArray.push(morgan('dev'));
@@ -105,7 +108,6 @@ export class Server implements IServer {
   }
 
   private expressRoutes = (routes: Array<{ path: string, router: Router }>) => {
-    this.app.use('/healthy', (_, res) => res.sendStatus(200));
     routes.forEach(route => {
       this.app.use(route.path, route.router)
     });
