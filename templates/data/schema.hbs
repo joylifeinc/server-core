@@ -1,0 +1,22 @@
+import { IFieldResolver, gql, IResolvers } from 'apollo-server';
+import { {{ pascalCase context }}Context } from '@context';
+
+export const {{ camelCase model }}TypeDefs = gql`
+
+  type {{ pascalCase model }} {
+    id: ID!
+  }
+
+  extend type Query {
+    {{ camelCase model }}(id: ID!): {{ pascalCase model }}
+  }
+`;
+
+const {{ camelCase model }}: IFieldResolver<null, {{ pascalCase context }}Context, { id: string }> =
+  (_, args, context) => context.{{ camelCase context }}ContextController.get{{ pascalCase context }}ById(context, args.id);
+
+export const {{ camelCase model }}Resolvers: IResolvers = {
+  Query: {
+    {{ camelCase model }}
+  }
+}

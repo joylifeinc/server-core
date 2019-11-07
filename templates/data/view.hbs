@@ -1,0 +1,10 @@
+import { ModelViewTemplate } from '@withjoy/server-core';
+import { {{ pascalCase context }}Context } from '@context';
+import { {{ pascalCase model }} } from './model';
+
+export class {{ pascalCase model }}View extends ModelViewTemplate<{{ pascalCase model }}, {{ pascalCase context }}Context> {
+  constructor(context: {{ pascalCase context }}Context, {{ camelCase model }}: {{ pascalCase model }}) {
+    super(context, {{ camelCase model }});
+  }
+
+}
