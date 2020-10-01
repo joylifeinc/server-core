@@ -184,10 +184,10 @@ export function parseCoreTypeInputDate(input: string | null | undefined): Date |
 export function formatCoreTypeDateTimestamp(date: string | number | Date, timezone: string): string {
   const converted = moment(date);
   if (! converted.isValid()) {
-    throw new TypeError(`formatCoreTypeDateTimestamp: invalid date: "${ timezone }"`);
+    throw new TypeError(`formatCoreTypeDateTimestamp: invalid date: "${ date }"`);
   }
   if (! moment.tz.zone(timezone)) {
-    throw new TypeError(`formatCoreTypeDateTimestamp: invalid timezone: "${ date }"`);
+    throw new TypeError(`formatCoreTypeDateTimestamp: invalid timezone: "${ timezone }"`);
   }
   return converted.tz(timezone).format(FORMAT_TIMESTAMP);
 }
